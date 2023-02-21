@@ -29,11 +29,32 @@ const HomeScreen = () => {
     setMovies(results)
     setMovie(results[0])
     }
-
+    let moviesOrder = movies.sort((a,b)=>{
+        if (a.title>b.title){
+            return 1;
+        };
+        if (a.title < b.title){
+            return -1;
+        }
+        else{return 0 }})
+    
+    
     useEffect(() => {
+        setMovies(moviesOrder)
         findMovies();
     }, []);
 
+    //-------------------------------------------------------------
+    /*movies.sort((a,b)=>{
+        if (a.title>b.title){
+            return 1;
+        };
+        if (a.title < b.title){
+            return -1;
+        }
+        else{return 0 } */
+    //-------------------------------------------------------------        
+    
     return (
         <View style={styles.container}>
             <View style = {styles.titleContainer}>
@@ -56,7 +77,7 @@ const styles = StyleSheet.create({
     container:{
         marginTop:25,
         flex:1,
-        backgroundColor:'#4D455D',
+        backgroundColor:'white',
         width:'100%',
         height:'100%',
         alignItems:'center',

@@ -17,7 +17,7 @@ const ItemList = ({movie}) => {
             <View style = {styles.itemInfo}>
                 <Text style = {styles.itemTitle}>{title}</Text>
                 <Text style = {styles.itemReleaseDate}>{release_date}</Text>
-                <Text style={styles.itemDescription}>{overview}</Text>
+                <View style={styles.itemDescription}><Text >{overview}</Text></View>
                 <Text style={styles.itemRating}>{vote_average}</Text>
             </View>
             
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     itemDescription:{
         height:40,
-        width:'50%',
+        width:'82%',
         overflow:'hidden',
         marginRight:10,
     },
