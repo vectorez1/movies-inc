@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Axios } from 'axios';
 import HomeScreen from './src/screens/HomeScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
 import { 
   Button, 
   StyleSheet, 
