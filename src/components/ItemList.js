@@ -9,7 +9,7 @@ const ItemList = ({movie}) => {
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
     const{title,overview,release_date,original_title,
         original_language,adult,vote_average,vote_count,
-        poster_path} = movie;
+        poster_path,id} = movie;
     const[press,setPress] = useState(false)
     
     return (
@@ -30,7 +30,7 @@ const ItemList = ({movie}) => {
                         source={require('../images/star.png')}
                         style = {{width:13,height:13,alignSelf:'center', marginRight:5,}}
                     />
-                <Text style={styles.itemRating}>{vote_average}</Text>
+                    <Text style={styles.itemRating}>{vote_average}</Text>
                 </View>
             </View>
             

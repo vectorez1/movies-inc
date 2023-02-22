@@ -2,13 +2,13 @@ import axios from 'axios';
 import React from 'react';
 import { useState,useEffect } from 'react';
 import {View, StyleSheet, Text, TextInput, FlatList, SafeAreaView ,Image} from 'react-native';
-import ItemList from '../components/ItemList';
+import DetailsScreen from './DetailsScreen';
 import MainScreen from './MainScreen';
 
 const HomeScreen = () => {
     //Getting API information
     const API_URL = 'https://api.themoviedb.org/3';
-    const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
+    const API_KEY = '9c024169de071d4fbd135671bf5d05cf'    
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
 
     //setting state Variables
@@ -43,6 +43,7 @@ const HomeScreen = () => {
         .then(res => {setCredit(res.data)}).catch((error)=>{console.log(error)})*/
         setMovies(moviesOrder)
         findMovies();
+        console.log(movies[0])
     }, []);
 
     return (
