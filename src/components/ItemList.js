@@ -6,9 +6,12 @@ let imgSize = 120;
 const ItemList = ({movie}) => {
     const [pressedColor,setPressedColor]= useState('container');
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
-    const{title,overview,release_date,original_title,original_language,adult,vote_average,vote_count,poster_path} = movie;
+    const{title,overview,release_date,original_title,
+        original_language,adult,vote_average,vote_count,
+        poster_path} = movie;
+        
     return (
-        <View style = {styles[pressedColor]}>
+        <View style = {styles.container} onTouchStart={()=>{console.log('klk')}}>
             <Image 
                 source={{uri: IMAGE_PATH + poster_path}}
                 alt = {title}
@@ -18,7 +21,7 @@ const ItemList = ({movie}) => {
                 <Text style = {styles.itemTitle}>{title}</Text>
                 <Text style = {styles.itemReleaseDate}>{release_date}</Text>
                 <View style={styles.itemDescription}><Text >{overview}</Text></View>
-                <Text style={styles.itemRating}>{vote_average}</Text>
+                <View><Text style={styles.itemRating}>{vote_average}</Text></View>
             </View>
             
         </View>
