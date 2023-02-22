@@ -13,13 +13,9 @@ import {
   Image} from 'react-native';
 
 export default function App() {
-  const [state, setstate] = useState({
 
-  });
   return (
-    <View style={styles.container}>
-        <HomeScreen/>
-    </View>
+    <HomeScreen/>
   );
 }
 const styles = StyleSheet.create({

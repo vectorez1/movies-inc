@@ -13,7 +13,6 @@ const HomeScreen = () => {
 
     //setting state Variables
     const [movies,setMovies] = useState([]);
-    const [movie,setMovie] = useState({title:"Loading Movies"})
     const [searchKey,setSearchKey] = useState('')
 
     //fetching the API
@@ -26,8 +25,7 @@ const HomeScreen = () => {
             query:searchKey,
         },
     });
-    setMovies(results)
-    setMovie(results[0])
+        setMovies(results)
     }
     let moviesOrder = movies.sort((a,b)=>{
         if (a.title>b.title){
@@ -39,14 +37,27 @@ const HomeScreen = () => {
         else{return 0 }})
     
     
+    
     useEffect(() => {
+        /* axios.get(`https://api.themoviedb.org/3/movie/640146/credits?api_key=${API_KEY}&language=en-US`)
+        .then(res => {setCredit(res.data)}).catch((error)=>{console.log(error)})*/
         setMovies(moviesOrder)
         findMovies();
     }, []);
 
     return (
-        <MainScreen movies={movies}/>
+        <View style={styles.container}>
+            
+            <MainScreen movies={movies}/>
+        </View>
     );
 }
-
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        //backgroundColor:'#061724',
+        justifyContent:'flex-start',
+        alignItems:'center',
+    },
+})
 export default HomeScreen;

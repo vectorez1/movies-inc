@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import {View, StyleSheet, Text,Image} from 'react-native';
+
 let imgSize = 120;
 
 const ItemList = ({movie}) => {
@@ -29,7 +30,7 @@ const ItemList = ({movie}) => {
                         source={require('../images/star.png')}
                         style = {{width:13,height:13,alignSelf:'center', marginRight:5,}}
                     />
-                <Text style={styles.itemRating}>{vote_average/2}</Text>
+                <Text style={styles.itemRating}>{vote_average}</Text>
                 </View>
             </View>
             
