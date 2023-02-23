@@ -4,14 +4,20 @@ import { useState,useEffect } from 'react';
 import {View, StyleSheet, Text, TextInput, FlatList, SafeAreaView ,Image} from 'react-native';
 import ItemList from '../components/ItemList';
 
+/*
+    -La Lista debe incluir el titulo de la pelicula, la fecha de estreno, la medida de votos
+    y el cartel de la pelicula.
+    -La lista debe mostrar solo la primera pagina de resultados.
+    -la Lista debe estar ordenada alfabeticamente
+*/
 
 const MainScreen = () => {
     //Getting API information
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'    
-    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
 
     //setting state Variables
+    
     const [movies,setMovies] = useState([]);
 
     //fetching the API
@@ -25,7 +31,7 @@ const MainScreen = () => {
         },
     });
         setMovies(results)
-    } 
+    }  
     
 
     let moviesOrder = movies.sort((a,b)=>{
@@ -56,6 +62,7 @@ const MainScreen = () => {
                 keyExtractor={(item)=>item.id}
                 renderItem={({item})=><ItemList movie={item}/>}
                 style={{width:'100%'}}
+                ItemSeparatorComponent = {()=><View style={{borderTopWidth:0.41, borderColor:'#cccccc',}}></View>}
             />
         </View>
     );

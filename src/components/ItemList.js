@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 let imgSize = 120;
 
-const ItemList = ({movie}) => {
+const ItemList = ({movie,session_id}) => {
     const navigation = useNavigation();
     const [pressedColor,setPressedColor]= useState('container');
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
