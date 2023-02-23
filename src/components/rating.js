@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { useEffect,useState } from 'react';
+import { updateVoteAverage } from './TMDb';
 
 const Rating = ({amount}) => {
     const tamount = Math.floor(amount);
     const [defaultStarRating,setDefaultStarRating] = useState(tamount) 
+    const [rating,setRating] = useState(amount)
     const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
     const starPath = '../images/star.png';
     const starOutlinePath = '../images/starOutline.png'
@@ -17,34 +19,48 @@ const Rating = ({amount}) => {
     },[])
     
     return (
-        <View style={styles.container}>  
-            {maxRating.map((item,key)=>{
-                return(
-                    <TouchableOpacity
-                        activeOpacity={0.7}
-                        key={item}
-                        onPress={()=>{                       
-                            setDefaultStarRating(item)
-                        }}
-                    >
-                    <Image
-                        style={styles.starImg}
-                        source={
-                            item <= defaultStarRating
-                            ? require(starPath) : require(starOutlinePath)
-                        }
-                    />
-                    </TouchableOpacity>
-                )
-            })}
+        <View style = {styles.container}>
+            <View style = {{flexDirection:'row',}}>
+                <Image
+                    source={require('../images/star.png')}
+                    style = {styles.starIcon}
+                />
+                    <Text style={{fontWeight:'700',}}>{rating + "/" + maxRating.length}</Text>                
+            </View>
+            <View style={styles.starsContainer}>  
+                {/* Creating Star Rating System*/}
+                {maxRating.map((item,key)=>{
+                    return(
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            key={item}
+                            onPress={()=>{                       
+                                setDefaultStarRating(item)
+                                setRating(item)
+                            }}
+                        >
+                        <Image
+                            style={styles.starImg}
+                            source={
+                                item <= defaultStarRating
+                                ? require(starPath) : require(starOutlinePath)
+                            }
+                        />
+                        </TouchableOpacity>
+                    )
+                })}
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container:{alignItems:'center',},
+    starsContainer:{
         height:40,
-        backgroundColor:'#cccccc',
+        //backgroundColor:'#AB02C9',
+        borderColor:'#cccccc',
+        borderWidth:1,
         padding:10,
         alignItems:'center',
         flexDirection:'row',
@@ -53,7 +69,14 @@ const styles = StyleSheet.create({
     starImg:{
         width:25,
         height:25,
-    }
+        margin:2,
+    },
+    starIcon:{
+        width:13,
+        height:13,
+        alignSelf:'center',
+        marginRight:5,
+    },
 })
 
 export default Rating;

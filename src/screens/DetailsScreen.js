@@ -39,13 +39,7 @@ const DetailsScreen = ({route}) => {
                     />
                     <Text style={{fontWeight:'800', fontSize:20, textAlign:'center',}}>{title}</Text>
                     <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
-                    <View style = {{flexDirection:'row',}}>
-                        <Image
-                            source={require('../images/star.png')}
-                            style = {styles.starIcon}
-                        />
-                        <Text style={{fontWeight:'700',}}>{vote_average}</Text>                
-                    </View>
+                    
                     <Rating amount={vote_average} />
                 </View>
             </View>
@@ -56,7 +50,7 @@ const DetailsScreen = ({route}) => {
             </View>
             <View style={{padding:5,}}>
                 <Text style={styles.textSection}>Cast:</Text>
-                {loading ? <Text style={{color:'#cccccc',}}>Loading....</Text> : credits.cast.map((e)=><Text style={{marginVertical:2,}} key={Math.random()}>{`${e.name} as: ${e.character}`}</Text>)}
+                {loading ? <Text style={{color:'#cccccc',}}>Loading....</Text> : credits.cast.map((e)=><Text style={styles.castText} key={Math.random()}>{`${e.name} ${e.character && 'as:'} ${e.character}`}</Text>)}
             </View>
         </View>
         </ScrollView>
@@ -70,16 +64,23 @@ const styles = StyleSheet.create({
         padding:20,
         //alignItems:'center',
     },
-    starIcon:{
+    /* starIcon:{
         width:13,
         height:13,
         alignSelf:'center',
         marginRight:5,
-    },
+    }, */
     textSection:{
         textDecorationLine:'underline',
         fontWeight:'800',
         fontSize:15,
+    },
+    castText:{
+        marginVertical:2,
+        backgroundColor:'#AB02C9',
+        padding:10,
+        borderRadius:10,
+        color:'white',
     }
 
     
