@@ -2,17 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import {View, StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { useEffect,useState } from 'react';
-import { updateVoteAverage } from './TMDb';
 /*
 -En La Pagina de la Pelicula detallada, debe haber un conjunto de estrellas que el usuario
 pueda utilizar para calificar la pelicula.
 -La calificacion debe ser contabilizada de nuevo en la API
 */
-const Rating = ({vote_average,id}) => {
+const Rating = ({vote_average,id,sessionID}) => {
     //const tamount = Math.floor(vote_average);
-
-    
-    const [guessSessionId,setGuessSessionId] = useState('')
     
     //set Star Variables
     const [rating,setRating] = useState(vote_average)
@@ -25,21 +21,19 @@ const Rating = ({vote_average,id}) => {
 
     let postRating = (rating) =>{
         //`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`
-        axios.post(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`, {
+        axios.post(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${sessionID}`, {
         value: rating
       })
       .then(response => {
         console.log(response.data);
       })
       .catch(error => {
-        console.log(error.response);
+        console.log("error.response");
       });
     }
 
     useEffect(()=>{
-        axios.get(`${API_URL}/authentication/guest_session/new?api_key=${API_KEY}`)
-        .then(e=>setGuessSessionId(e.data.guest_session_id))
-        .catch(error=>console.log("error"));        
+             
     },[])
     
     return (

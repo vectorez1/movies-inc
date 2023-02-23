@@ -14,11 +14,11 @@ el genero, la calificacion y el cartel de la pelicula*
 -La pagina de detalles de la pelicula debe mostrar la lista de los
 actores y sus personajes en la pelicula
 */
-const DetailsScreen = ({route}) => {
+const DetailsScreen = ({route }) => {
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
-    const {title,overview,vote_average,id,original_title,poster_path,release_date} = route.params;
+    const {title,overview,vote_average,id,original_title,poster_path,release_date,sessionID} = route.params;
     const [credits,setCredits] = useState([])
     const [loading,setLoading] = useState(true)
     
@@ -26,6 +26,7 @@ const DetailsScreen = ({route}) => {
     
     useEffect(()=>{
         setLoading(true)
+        console.log(sessionID)
         axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
         
     },[])
@@ -41,7 +42,7 @@ const DetailsScreen = ({route}) => {
                     <Text style={{fontWeight:'800', fontSize:20, textAlign:'center',}}>{title}</Text>
                     <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
                     
-                    {loading?<Text>loading...</Text>:<Rating id={id} vote_average={vote_average} />}
+                    {loading?<Text>loading...</Text>:<Rating id={id} vote_average={vote_average} sessionID={sessionID}/>}
                 </View>
             </View>
             
