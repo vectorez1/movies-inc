@@ -3,14 +3,16 @@ import {View, StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { useEffect,useState } from 'react';
 import { updateVoteAverage } from './TMDb';
 
-const Rating = ({amount}) => {
-    const tamount = Math.floor(amount);
-    const [defaultStarRating,setDefaultStarRating] = useState(tamount) 
-    const [rating,setRating] = useState(amount)
+const Rating = ({vote_average,id}) => {
+    //const tamount = Math.floor(vote_average);
+
+    //set Star Variables
+    const [rating,setRating] = useState(vote_average)
     const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
+
+    //Star Image
     const starPath = '../images/star.png';
     const starOutlinePath = '../images/starOutline.png'
-    const [starImg,setStarImg]=useState([])
 
     
 
@@ -34,15 +36,15 @@ const Rating = ({amount}) => {
                         <TouchableOpacity
                             activeOpacity={0.7}
                             key={item}
-                            onPress={()=>{                       
-                                setDefaultStarRating(item)
+                            onPress={()=>{                
                                 setRating(item)
+                                updateVoteAverage(id,rating)
                             }}
                         >
                         <Image
                             style={styles.starImg}
                             source={
-                                item <= defaultStarRating
+                                item <= rating
                                 ? require(starPath) : require(starOutlinePath)
                             }
                         />

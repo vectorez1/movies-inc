@@ -1,33 +1,12 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
 import axios from 'axios';
 
-const apiUrl = 'https://api.themoviedb.org/3/movie'; // TMDb API base URL
-const apiKey = '9c024169de071d4fbd135671bf5d05cf'; // replace with your TMDb API key
+const API_URL = 'https://api.themoviedb.org/3/movie';
+const API_KEY = '9c024169de071d4fbd135671bf5d05cf'; 
+const URL = `${API_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
 
 export const updateVoteAverage = (movieId, newVoteAverage) => {
-  // configure the axios request
-  const requestOptions = {
-    headers: { Authorization: `Bearer ${apiKey}` },
-    params: { api_key: apiKey },
-    data: { vote_average: newVoteAverage },
+    // configure the axios request
+    
+    //axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`).then(d=>console.log(d.data)).catch((error)=>console.log(error));
+    axios.put(`https://api.themoviedb.org/3/movie/${movieId}/rating?api_key=9c024169de071d4fbd135671bf5d05cf`,{vote_average:newVoteAverage}).then(d=>console.log(d.vote_average)).catch((error)=>console.log(error));
   };
-
-  // make the axios request to update the vote average
-  return axios.put(`${apiUrl}/${movieId}`, requestOptions)
-    .then(response => response.data)
-    .catch(error => console.error(error));
-};
-
-/* const TMDb = () => {
-    return (
-        <View>
-            
-        </View>
-    );
-} 
-
-const styles = StyleSheet.create({})
-*/
-
-//export default TMDb;

@@ -40,7 +40,7 @@ const DetailsScreen = ({route}) => {
                     <Text style={{fontWeight:'800', fontSize:20, textAlign:'center',}}>{title}</Text>
                     <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
                     
-                    <Rating amount={vote_average} />
+                    {loading?<Text>loading...</Text>:<Rating id={id} vote_average={vote_average} />}
                 </View>
             </View>
             
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
     },
     castText:{
         marginVertical:2,
-        backgroundColor:'#AB02C9',
+        backgroundColor:'#cccccc',
         padding:10,
         borderRadius:10,
-        color:'white',
+        color:'black',
     }
 
     
