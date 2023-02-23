@@ -21,25 +21,12 @@ const DetailsScreen = ({route}) => {
     const [credits,setCredits] = useState([])
     const [loading,setLoading] = useState(true)
     
-    const URL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=9c024169de071d4fbd135671bf5d05cf&language=en-US`
-    const[movieCredits,setMovieCredits] = useState([]);
-    // const[movies,setMovies] =useState([])
-    const getCasti = ()=>{
-        //axios.get(URL).then((e)=>setCredits(e.data)).catch(()=>{console.log('nah')}).finally(setLoading(false))
-        //fetch(URL).then(resp => resp.json()).then(json => setCredits(json)).catch(error => console.error(error)).finally(setLoading(false));
-    }
-    const findMovies = async()=>{
-        const {data : { results },
-    } = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=9c024169de071d4fbd135671bf5d05cf&language=en-US`,{
-    });
-        setCredits(results)
-    } 
+    const URL = `${API_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
     
     useEffect(()=>{
         setLoading(true)
         axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
     },[])
-    console.log(credits)
     return (
         <ScrollView style={{backgroundColor: 'white'}}>
             <View style={styles.container}>
@@ -67,7 +54,7 @@ const DetailsScreen = ({route}) => {
             </View>
             <View style={{padding:5,}}>
                 <Text style={{fontWeight:'800', fontSize:15,}}>Cast:</Text>
-                {loading ? <Text>Loading....</Text> : credits.cast.map((e)=><Text>{`${e.name} as: ${e.character}`}</Text>)}
+                {loading ? <Text>Loading....</Text> : credits.cast.map((e)=><Text key={e.name}>{`${e.name} as: ${e.character}`}</Text>)}
             </View>
         </View>
         </ScrollView>
