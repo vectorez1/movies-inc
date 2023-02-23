@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import {View, StyleSheet,Text, FlatList,Image, ScrollView} from 'react-native';
 import { useState,useEffect } from 'react';
-import { SafeAreaView } from 'react-native-web';
 /*
 FF-2
 -La Pagina de detalles de la pelicula debe incluir el titulo* de la pelicula.
@@ -28,7 +27,7 @@ const DetailsScreen = ({route}) => {
         axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
     },[])
     return (
-        <ScrollView style={{backgroundColor: 'white'}}>
+        <ScrollView style={{backgroundColor: 'white'}} bounces={true}>
             <View style={styles.container}>
             <View style = {{}}>
                 <View style={{alignItems:'center',}}>
@@ -36,7 +35,7 @@ const DetailsScreen = ({route}) => {
                         source={{uri:`${IMAGE_PATH}/${poster_path}`}}
                         style={{width:200, height:300, borderRadius:10,}}
                     />
-                    <Text style={{fontWeight:'800', fontSize:15, textAlign:'auto',}}>{title}</Text>
+                    <Text style={{fontWeight:'800', fontSize:20, textAlign:'auto',}}>{title}</Text>
                     <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
                     <View style = {{flexDirection:'row',}}>
                         <Image
@@ -49,12 +48,12 @@ const DetailsScreen = ({route}) => {
             </View>
             
             <View style={{padding:5,}}>
-                <Text style={{fontWeight:'800', fontSize:15,}}>Description:</Text>
+                <Text style={styles.textSection}>Description:</Text>
                 <Text style = {{fontSize:15, textAlign:'justify', borderRadius:10,}}>{overview}</Text>
             </View>
             <View style={{padding:5,}}>
-                <Text style={{fontWeight:'800', fontSize:15,}}>Cast:</Text>
-                {loading ? <Text>Loading....</Text> : credits.cast.map((e)=><Text key={e.name}>{`${e.name} as: ${e.character}`}</Text>)}
+                <Text style={styles.textSection}>Cast:</Text>
+                {loading ? <Text style={{color:'#cccccc',}}>Loading....</Text> : credits.cast.map((e)=><Text style={{marginVertical:2,}} key={Math.random()}>{`${e.name} as: ${e.character}`}</Text>)}
             </View>
         </View>
         </ScrollView>
@@ -74,6 +73,11 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         marginRight:5,
     },
+    textSection:{
+        textDecorationLine:'underline',
+        fontWeight:'800',
+        fontSize:15,
+    }
 
     
 })
