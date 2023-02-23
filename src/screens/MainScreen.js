@@ -56,6 +56,7 @@ const MainScreen = () => {
                 keyExtractor={(item)=>item.id}
                 renderItem={({item})=><ItemList movie={item}/>}
                 style={{width:'100%'}}
+                ItemSeparatorComponent = {()=><View style={{borderTopWidth:0.41, borderColor:'#cccccc',}}></View>}
             />
         </View>
     );
