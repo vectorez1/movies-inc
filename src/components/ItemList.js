@@ -16,7 +16,6 @@ const ItemList = ({movie,session_id}) => {
     
     return (
         <View style = {press ? pressedStyles.container : styles.container}
-        onTouchStart={()=>{console.log(id)}}
         onTouchEnd={()=>{
             navigation.navigate('Details',{
                 title:title,

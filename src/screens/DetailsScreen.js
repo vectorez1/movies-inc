@@ -26,7 +26,6 @@ const DetailsScreen = ({route }) => {
     
     useEffect(()=>{
         setLoading(true)
-        console.log(sessionID)
         axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
         
     },[])

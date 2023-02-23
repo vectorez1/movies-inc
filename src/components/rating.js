@@ -19,16 +19,17 @@ const Rating = ({vote_average,id,sessionID}) => {
     const starPath = '../images/star.png';
     const starOutlinePath = '../images/starOutline.png'
 
+    //Post the star rating
     let postRating = (rating) =>{
         //`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`
-        axios.post(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${sessionID}`, {
+        axios.post(`${API_URL}/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${sessionID}`, {
         value: rating
       })
       .then(response => {
         console.log(response.data);
       })
       .catch(error => {
-        console.log("error.response");
+        console.log(error.response);
       });
     }
 
@@ -54,7 +55,8 @@ const Rating = ({vote_average,id,sessionID}) => {
                             key={item}
                             onPress={()=>{                
                                 setRating(item)   
-                                postRating(item)                             
+                                postRating(item)  
+                                alert('Gracias Por Tu Aporte!')                           
                             }}
                         >
                         <Image

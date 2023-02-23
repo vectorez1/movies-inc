@@ -31,7 +31,7 @@ const MainScreen = () => {
         },
     });
         setMovies(results)
-    } 
+    }  
     
 
     let moviesOrder = movies.sort((a,b)=>{

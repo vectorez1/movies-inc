@@ -9,7 +9,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const HomeScreen = ({sessionID}) => {
     const Stack = createNativeStackNavigator();
-    
+    useEffect(()=>{
+        console.log("session id: " + sessionID)
+    })
     return (    
         <NavigationContainer>
             <Stack.Navigator>
