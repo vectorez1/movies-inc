@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import {View, StyleSheet,Text, FlatList,Image, ScrollView} from 'react-native';
 import { useState,useEffect } from 'react';
+import Rating from '../components/Rating';
+import ItemList from '../components/ItemList';
+//import {Rating} from '../components/Rating';
 /*
 FF-2
 -La Pagina de detalles de la pelicula debe incluir el titulo* de la pelicula.
@@ -15,7 +18,6 @@ const DetailsScreen = ({route}) => {
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
-    const starPath = require('../images/star.png')
     const {title,overview,vote_average,id,original_title,poster_path,release_date} = route.params;
     const [credits,setCredits] = useState([])
     const [loading,setLoading] = useState(true)
@@ -42,8 +44,10 @@ const DetailsScreen = ({route}) => {
                             source={require('../images/star.png')}
                             style = {styles.starIcon}
                         />
-                        <Text style={{fontWeight:'700',}}>{vote_average}</Text>
+                        <Text style={{fontWeight:'700',}}>{vote_average}</Text> 
+                        
                     </View>
+                    <Rating amount={vote_average} />
                 </View>
             </View>
             
