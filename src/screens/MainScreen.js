@@ -4,6 +4,12 @@ import { useState,useEffect } from 'react';
 import {View, StyleSheet, Text, TextInput, FlatList, SafeAreaView ,Image} from 'react-native';
 import ItemList from '../components/ItemList';
 
+/*
+    -La Lista debe incluir el titulo de la pelicula, la fecha de estreno, la medida de votos
+    y el cartel de la pelicula.
+    -La lista debe mostrar solo la primera pagina de resultados.
+    -la Lista debe estar ordenada alfabeticamente
+*/
 
 const MainScreen = () => {
     //Getting API information

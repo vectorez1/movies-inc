@@ -2,7 +2,11 @@ import React from 'react';
 import {View, StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { useEffect,useState } from 'react';
 import { updateVoteAverage } from './TMDb';
-
+/*
+-En La Pagina de la Pelicula detallada, debe haber un conjunto de estrellas que el usuario
+pueda utilizar para calificar la pelicula.
+-La calificacion debe ser contabilizada de nuevo en la API
+*/
 const Rating = ({vote_average,id}) => {
     //const tamount = Math.floor(vote_average);
 
@@ -37,8 +41,7 @@ const Rating = ({vote_average,id}) => {
                             activeOpacity={0.7}
                             key={item}
                             onPress={()=>{                
-                                setRating(item)
-                                updateVoteAverage(id,rating)
+                                setRating(item)                                
                             }}
                         >
                         <Image
