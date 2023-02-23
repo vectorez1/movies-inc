@@ -1,20 +1,33 @@
 import React from 'react';
 import { useState } from 'react';
 import {View, StyleSheet, Text,Image} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 let imgSize = 120;
 
 const ItemList = ({movie}) => {
+    const navigation = useNavigation();
     const [pressedColor,setPressedColor]= useState('container');
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
     const{title,overview,release_date,original_title,
         original_language,adult,vote_average,vote_count,
-        poster_path} = movie;
+        poster_path,id} = movie;
     const[press,setPress] = useState(false)
     
     return (
-        <View style = {press ? pressedStyles.container : styles.container} 
-            onTouchStart={()=>{setPress(true)}}
-            onTouchEnd={()=>{setPress(false)}}>
+        <View style = {press ? pressedStyles.container : styles.container}
+        onTouchEnd={()=>{
+            navigation.navigate('Details',{
+                title:title,
+                overview:overview,
+                vote_average:vote_average,
+                id:id,
+                original_title:original_title,
+                poster_path:poster_path,
+                release_date:release_date
+            })
+        }}
+        >
             <Image 
                 source={{uri: IMAGE_PATH + poster_path}}
                 alt = {title}
@@ -29,7 +42,7 @@ const ItemList = ({movie}) => {
                         source={require('../images/star.png')}
                         style = {{width:13,height:13,alignSelf:'center', marginRight:5,}}
                     />
-                <Text style={styles.itemRating}>{vote_average/2}</Text>
+                    <Text style={styles.itemRating}>{vote_average}</Text>
                 </View>
             </View>
             
