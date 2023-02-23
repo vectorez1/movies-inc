@@ -1,0 +1,9 @@
+-Asegurese de tener Node.js instalado en la version mas reciente.
+-Ejecute el comando en la consola para instalar expo : npm install -g expo-cli
+-Luego Ejecute el comando: npm install.
+-Descargue la aplicacion de 'expo go' en su celular.
+-En la consola ejecute el comando: npx expo start
+
+
+
+
