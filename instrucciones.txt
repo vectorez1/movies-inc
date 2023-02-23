@@ -3,7 +3,8 @@
 -Luego Ejecute el comando: npm install.
 -Descargue la aplicacion de 'expo go' en su celular.
 -En la consola ejecute el comando: npx expo start
-
+-Abra la aplicacion de expo en su celular y escanee el codigo 'QR' que aparecera en la consola.
+-Ya deberia poder 
 
 
 

@@ -27,6 +27,7 @@ const DetailsScreen = ({route}) => {
     useEffect(()=>{
         setLoading(true)
         axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
+        
     },[])
     return (
         <ScrollView style={{backgroundColor: 'white'}} bounces={true}>

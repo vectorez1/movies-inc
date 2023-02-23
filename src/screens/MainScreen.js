@@ -15,9 +15,9 @@ const MainScreen = () => {
     //Getting API information
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'    
-    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
 
     //setting state Variables
+    
     const [movies,setMovies] = useState([]);
 
     //fetching the API

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {View, StyleSheet,Image,Text,TouchableOpacity} from 'react-native';
 import { useEffect,useState } from 'react';
 import { updateVoteAverage } from './TMDb';
@@ -10,18 +11,35 @@ pueda utilizar para calificar la pelicula.
 const Rating = ({vote_average,id}) => {
     //const tamount = Math.floor(vote_average);
 
+    
+    const [guessSessionId,setGuessSessionId] = useState('')
+    
     //set Star Variables
     const [rating,setRating] = useState(vote_average)
     const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
-
+    const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
+    const API_URL = 'https://api.themoviedb.org/3';
     //Star Image
     const starPath = '../images/star.png';
     const starOutlinePath = '../images/starOutline.png'
 
-    
+    let postRating = (rating) =>{
+        //`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`
+        axios.post(`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`, {
+        value: rating
+      })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+    }
 
     useEffect(()=>{
-       
+        axios.get(`${API_URL}/authentication/guest_session/new?api_key=${API_KEY}`)
+        .then(e=>setGuessSessionId(e.data.guest_session_id))
+        .catch(error=>console.log("error"));        
     },[])
     
     return (
@@ -41,7 +59,8 @@ const Rating = ({vote_average,id}) => {
                             activeOpacity={0.7}
                             key={item}
                             onPress={()=>{                
-                                setRating(item)                                
+                                setRating(item)   
+                                postRating(item)                             
                             }}
                         >
                         <Image

@@ -8,5 +8,4 @@ export const updateVoteAverage = (movieId, newVoteAverage) => {
     // configure the axios request
     
     //axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`).then(d=>console.log(d.data)).catch((error)=>console.log(error));
-    axios.put(`https://api.themoviedb.org/3/movie/${movieId}/rating?api_key=9c024169de071d4fbd135671bf5d05cf`,{vote_average:newVoteAverage}).then(d=>console.log(d.vote_average)).catch((error)=>console.log(error));
-  };
+};
