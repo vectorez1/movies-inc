@@ -5,9 +5,9 @@ import { useState,useEffect } from 'react';
 import { SafeAreaView } from 'react-native-web';
 /*
 FF-2
--La Pagina de detalles de la pelicula debe incluir el titulo de la pelicula.
-el año de estreno, una descripcion general de la pelicula,
-el genero, la calificacion y el cartel de la pelicula
+-La Pagina de detalles de la pelicula debe incluir el titulo* de la pelicula.
+el año de estreno*, una descripcion* general de la pelicula,
+el genero, la calificacion y el cartel de la pelicula*
 
 -La pagina de detalles de la pelicula debe mostrar la lista de los
 actores y sus personajes en la pelicula
@@ -24,8 +24,29 @@ const DetailsScreen = ({route}) => {
     useEffect(()=>{
     })
     return (
-        <View>
-            <Text>{movie.title}</Text>
+        <View style={styles.container}>
+            <View style = {{backgroundColor:'#ff00ff',}}>
+                <Image
+                    source={{uri:`${IMAGE_PATH}/${movie.poster_path}`}}
+                    style={{width:200, height:300, borderRadius:10,}}
+                />
+                <View style={{alignItems:'center',}} >
+                    <Text style={{fontWeight:'800', fontSize:15, textAlign:'auto',}}>{movie.title}</Text>
+                    <Text style={{fontStyle:'italic', color:'#cccccc',}}>{movie.release_date}</Text>
+                    <View style = {{flexDirection:'row',}}>
+                        <Image
+                            source={require('../images/star.png')}
+                            style = {styles.starIcon}
+                        />
+                        <Text style={{fontWeight:'700',}}>{movie.vote_average}</Text>
+                    </View>
+                </View>
+            </View>
+            
+            <View>
+                <Text style={{fontWeight:'800', fontSize:15,}}>Description:</Text>
+                <Text style = {{fontSize:16, textAlign:'justify', backgroundColor:'blue', padding:10, borderRadius:10,}}>{movie.overview}</Text>
+            </View>
         </View>
         
     );
@@ -36,12 +57,15 @@ const styles = StyleSheet.create({
         height:'100%',
         backgroundColor:'white',
         padding:20,
+        //alignItems:'center',
     },
-    imgs:{
-        width:200,
-        height:300,
-        borderRadius:20,
-    }
+    starIcon:{
+        width:13,
+        height:13,
+        alignSelf:'center',
+        marginRight:5,
+    },
+
     
 })
 
