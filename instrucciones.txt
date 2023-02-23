@@ -4,7 +4,6 @@
 -Descargue la aplicacion de 'expo go' en su celular.
 -En la consola ejecute el comando: npx expo start
 -Abra la aplicacion de expo en su celular y escanee el codigo 'QR' que aparecera en la consola.
--Ya deberia poder 
-Nota: debido a un error mientras subia el repositorio El Archivo del Componente 'Rating.js' esta con la 'r' munuscula y se le llama con
-la 'R' mayuscula dentro del codigo. para que funcione correctamente debe cambiarse la 'r' por la 'R' en el archivo. 
+-Ya podra ver la app en funcionamiento.
 
+Cualquier pregunta favor contactarme por: victordelrosariogalva@gmail.com
