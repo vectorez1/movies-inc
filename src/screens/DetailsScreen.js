@@ -37,15 +37,14 @@ const DetailsScreen = ({route}) => {
                         source={{uri:`${IMAGE_PATH}/${poster_path}`}}
                         style={{width:200, height:300, borderRadius:10,}}
                     />
-                    <Text style={{fontWeight:'800', fontSize:20, textAlign:'auto',}}>{title}</Text>
+                    <Text style={{fontWeight:'800', fontSize:20, textAlign:'center',}}>{title}</Text>
                     <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
                     <View style = {{flexDirection:'row',}}>
                         <Image
                             source={require('../images/star.png')}
                             style = {styles.starIcon}
                         />
-                        <Text style={{fontWeight:'700',}}>{vote_average}</Text> 
-                        
+                        <Text style={{fontWeight:'700',}}>{vote_average}</Text>                
                     </View>
                     <Rating amount={vote_average} />
                 </View>

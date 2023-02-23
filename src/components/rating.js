@@ -23,7 +23,9 @@ const Rating = ({amount}) => {
                     <TouchableOpacity
                         activeOpacity={0.7}
                         key={item}
-                        onPress={()=>setDefaultStarRating(item)}
+                        onPress={()=>{                       
+                            setDefaultStarRating(item)
+                        }}
                     >
                     <Image
                         style={styles.starImg}
