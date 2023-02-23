@@ -22,8 +22,9 @@ const ItemList = ({movie}) => {
                 overview:overview,
                 vote_average:vote_average,
                 id:id,
-                movie:movie
-
+                original_title:original_title,
+                poster_path:poster_path,
+                release_date:release_date
             })
         }}
         >

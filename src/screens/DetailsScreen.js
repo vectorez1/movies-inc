@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {View, StyleSheet,Text, FlatList,Image} from 'react-native';
+import {View, StyleSheet,Text, FlatList,Image, ScrollView} from 'react-native';
 import { useState,useEffect } from 'react';
 import { SafeAreaView } from 'react-native-web';
 /*
@@ -16,38 +16,61 @@ const DetailsScreen = ({route}) => {
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
-    const movie = route.params.movie;
-    //const requ = `${API_URL}/movie/${movie.id}/credits?api_key=${API_KEY}&language=en-US`
-    //const{title,overview,release_date,original_title,original_language,adult,vote_average,vote_count,poster_path,id} = movie;
+    const starPath = require('../images/star.png')
+    const {title,overview,vote_average,id,original_title,poster_path,release_date} = route.params;
+    const [credits,setCredits] = useState([])
+    const [loading,setLoading] = useState(true)
+    
+    const URL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=9c024169de071d4fbd135671bf5d05cf&language=en-US`
     const[movieCredits,setMovieCredits] = useState([]);
     // const[movies,setMovies] =useState([])
+    const getCasti = ()=>{
+        //axios.get(URL).then((e)=>setCredits(e.data)).catch(()=>{console.log('nah')}).finally(setLoading(false))
+        //fetch(URL).then(resp => resp.json()).then(json => setCredits(json)).catch(error => console.error(error)).finally(setLoading(false));
+    }
+    const findMovies = async()=>{
+        const {data : { results },
+    } = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=9c024169de071d4fbd135671bf5d05cf&language=en-US`,{
+    });
+        setCredits(results)
+    } 
+    
     useEffect(()=>{
-    })
+        setLoading(true)
+        axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
+    },[])
+    console.log(credits)
     return (
-        <View style={styles.container}>
-            <View style = {{backgroundColor:'#ff00ff',}}>
-                <Image
-                    source={{uri:`${IMAGE_PATH}/${movie.poster_path}`}}
-                    style={{width:200, height:300, borderRadius:10,}}
-                />
-                <View style={{alignItems:'center',}} >
-                    <Text style={{fontWeight:'800', fontSize:15, textAlign:'auto',}}>{movie.title}</Text>
-                    <Text style={{fontStyle:'italic', color:'#cccccc',}}>{movie.release_date}</Text>
+        <ScrollView style={{backgroundColor: 'white'}}>
+            <View style={styles.container}>
+            <View style = {{}}>
+                <View style={{alignItems:'center',}}>
+                    <Image
+                        source={{uri:`${IMAGE_PATH}/${poster_path}`}}
+                        style={{width:200, height:300, borderRadius:10,}}
+                    />
+                    <Text style={{fontWeight:'800', fontSize:15, textAlign:'auto',}}>{title}</Text>
+                    <Text style={{fontStyle:'italic', color:'#cccccc',}}>{release_date}</Text>
                     <View style = {{flexDirection:'row',}}>
                         <Image
                             source={require('../images/star.png')}
                             style = {styles.starIcon}
                         />
-                        <Text style={{fontWeight:'700',}}>{movie.vote_average}</Text>
+                        <Text style={{fontWeight:'700',}}>{vote_average}</Text>
                     </View>
                 </View>
             </View>
             
-            <View>
+            <View style={{padding:5,}}>
                 <Text style={{fontWeight:'800', fontSize:15,}}>Description:</Text>
-                <Text style = {{fontSize:16, textAlign:'justify', backgroundColor:'blue', padding:10, borderRadius:10,}}>{movie.overview}</Text>
+                <Text style = {{fontSize:15, textAlign:'justify', borderRadius:10,}}>{overview}</Text>
+            </View>
+            <View style={{padding:5,}}>
+                <Text style={{fontWeight:'800', fontSize:15,}}>Cast:</Text>
+                {loading ? <Text>Loading....</Text> : credits.cast.map((e)=><Text>{`${e.name} as: ${e.character}`}</Text>)}
             </View>
         </View>
+        </ScrollView>
         
     );
 }
@@ -55,7 +78,6 @@ const styles = StyleSheet.create({
     container:{
         width:'100%',
         height:'100%',
-        backgroundColor:'white',
         padding:20,
         //alignItems:'center',
     },

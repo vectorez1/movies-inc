@@ -26,6 +26,8 @@ const MainScreen = () => {
     });
         setMovies(results)
     } 
+    
+
     let moviesOrder = movies.sort((a,b)=>{
         if (a.title>b.title){
             return 1;
@@ -37,8 +39,6 @@ const MainScreen = () => {
     
     
     useEffect(() => {
-        /* axios.get(`https://api.themoviedb.org/3/movie/640146/credits?api_key=${API_KEY}&language=en-US`)
-        .then(res => {setCredit(res.data)}).catch((error)=>{console.log(error)})*/
         setMovies(moviesOrder)
         findMovies();
     }, []);
