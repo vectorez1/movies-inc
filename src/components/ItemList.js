@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import {View, StyleSheet, Text,Image} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 let imgSize = 120;
 
 const ItemList = ({movie}) => {
+    const navigation = useNavigation();
     const [pressedColor,setPressedColor]= useState('container');
     const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
     const{title,overview,release_date,original_title,
@@ -13,9 +15,18 @@ const ItemList = ({movie}) => {
     const[press,setPress] = useState(false)
     
     return (
-        <View style = {press ? pressedStyles.container : styles.container} 
-            onTouchStart={()=>{setPress(true)}}
-            onTouchEnd={()=>{setPress(false)}}>
+        <View style = {press ? pressedStyles.container : styles.container}
+        onTouchEnd={()=>{
+            navigation.navigate('Details',{
+                title:title,
+                overview:overview,
+                vote_average:vote_average,
+                id:id,
+                movie:movie
+
+            })
+        }}
+        >
             <Image 
                 source={{uri: IMAGE_PATH + poster_path}}
                 alt = {title}
