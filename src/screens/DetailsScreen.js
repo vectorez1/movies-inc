@@ -15,17 +15,17 @@ actores y sus personajes en la pelicula
 */
 const DetailsScreen = ({route }) => {
     const API_URL = 'https://api.themoviedb.org/3';
-    const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
-    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
+    const API_KEY = '9c024169de071d4fbd135671bf5d05cf';
+    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
     const {title,overview,vote_average,id,original_title,poster_path,release_date,sessionID} = route.params;
-    const [credits,setCredits] = useState([])
-    const [loading,setLoading] = useState(true)
+    const [credits,setCredits] = useState([]);
+    const [loading,setLoading] = useState(true);
     
-    const URL = `${API_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+    const URL = `${API_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
     
     useEffect(()=>{
-        setLoading(true)
-        axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false))
+        setLoading(true);
+        axios.get(URL).then((r)=>setCredits(r.data)).catch(error => (console.log(error))).finally(()=>setLoading(false));
         
     },[])
     return (
