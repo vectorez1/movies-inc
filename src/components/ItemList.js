@@ -5,17 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 
 let imgSize = 120;
 
-const ItemList = ({movie,session_id}) => {
+const ItemList = ({movie}) => {
     const navigation = useNavigation();
-    const [pressedColor,setPressedColor]= useState('container');
-    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
+    const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
+
+    //Movie Variables
     const{title,overview,release_date,original_title,
         original_language,adult,vote_average,vote_count,
         poster_path,id} = movie;
-    const[press,setPress] = useState(false)
     
     return (
-        <View style = {press ? pressedStyles.container : styles.container}
+        <View style = {styles.container}
         onTouchEnd={()=>{
             navigation.navigate('Details',{
                 title:title,
@@ -88,17 +88,5 @@ const styles = StyleSheet.create({
         fontWeight:'700',
     }
 })
-const pressedStyles = StyleSheet.create({
-    container:{
-        overflow:'hidden',
-        padding:10,
-        //marginVertical:5,
-        width:'100%',
-        height:160,
-        backgroundColor:'#cccccc',
-        //borderRadius:20,
-        flexDirection:'row',
-        alignItems:'center',
-    },
-})
+
 export default ItemList;

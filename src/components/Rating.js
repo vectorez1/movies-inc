@@ -11,15 +11,17 @@ const Rating = ({vote_average,id,sessionID}) => {
     //set Star Variables
     const [rating,setRating] = useState(vote_average)
     const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
+
+    //Api Variables
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
     const API_URL = 'https://api.themoviedb.org/3';
+    
     //Star Image
     const starPath = '../images/star.png';
     const starOutlinePath = '../images/starOutline.png'
 
     //Post the star rating
     let postRating = (rating) =>{
-        //`https://api.themoviedb.org/3/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${guessSessionId}`
         axios.post(`${API_URL}/movie/${id}/rating?api_key=${API_KEY}&guest_session_id=${sessionID}`, {
         value: rating
       })
@@ -39,7 +41,7 @@ const Rating = ({vote_average,id,sessionID}) => {
         <View style = {styles.container}>
             <View style = {{flexDirection:'row',}}>
                 <Image
-                    source={require('../images/star.png')}
+                    source={require(starPath)}
                     style = {styles.starIcon}
                 />
                     <Text style={{fontWeight:'700',}}>{rating + "/" + maxRating.length}</Text>                

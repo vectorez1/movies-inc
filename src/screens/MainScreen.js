@@ -12,12 +12,12 @@ import ItemList from '../components/ItemList';
 */
 
 const MainScreen = () => {
-    //Getting API information
+
+    //API Variables
     const API_URL = 'https://api.themoviedb.org/3';
     const API_KEY = '9c024169de071d4fbd135671bf5d05cf'    
 
     //setting state Variables
-    
     const [movies,setMovies] = useState([]);
 
     //fetching the API
@@ -33,7 +33,7 @@ const MainScreen = () => {
         setMovies(results)
     }  
     
-
+    //Sorting API
     let moviesOrder = movies.sort((a,b)=>{
         if (a.title>b.title){
             return 1;
@@ -56,7 +56,8 @@ const MainScreen = () => {
                     Movies Inc
                 </Text>
             </View>
-            {/* {movies.map((e)=>(<Text key={e.id}>{e.title}</Text>))} */}
+
+            {/* Rendering Movie List Elements */}
             <FlatList
                 data={movies}
                 keyExtractor={(item)=>item.id}
@@ -90,6 +91,5 @@ const styles = StyleSheet.create({
         alignSelf:'center',
     },
 });
-
 
 export default MainScreen;
