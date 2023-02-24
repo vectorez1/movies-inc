@@ -3,7 +3,7 @@ import axios from 'axios';
 import {View, StyleSheet,Text, FlatList,Image, ScrollView} from 'react-native';
 import { useState,useEffect } from 'react';
 import Rating from '../components/Rating';
-//import {Rating} from '../components/Rating';
+
 /*
 FF-2
 -La Pagina de detalles de la pelicula debe incluir el titulo* de la pelicula.
