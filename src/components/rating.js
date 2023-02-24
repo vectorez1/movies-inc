@@ -7,9 +7,7 @@ import { useEffect,useState } from 'react';
 pueda utilizar para calificar la pelicula.
 -La calificacion debe ser contabilizada de nuevo en la API
 */
-const Rating = ({vote_average,id,sessionID}) => {
-    //const tamount = Math.floor(vote_average);
-    
+const Rating = ({vote_average,id,sessionID}) => {    
     //set Star Variables
     const [rating,setRating] = useState(vote_average)
     const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
