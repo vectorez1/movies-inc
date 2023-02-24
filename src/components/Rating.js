@@ -9,16 +9,16 @@ pueda utilizar para calificar la pelicula.
 */
 const Rating = ({vote_average,id,sessionID}) => {    
     //set Star Variables
-    const [rating,setRating] = useState(vote_average)
-    const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10])
+    const [rating,setRating] = useState(vote_average);
+    const [maxRating,setMaxRating] = useState([1,2,3,4,5,6,7,8,9,10]);
 
     //Api Variables
-    const API_KEY = '9c024169de071d4fbd135671bf5d05cf'
+    const API_KEY = '9c024169de071d4fbd135671bf5d05cf';
     const API_URL = 'https://api.themoviedb.org/3';
-    
+
     //Star Image
     const starPath = '../images/star.png';
-    const starOutlinePath = '../images/starOutline.png'
+    const starOutlinePath = '../images/starOutline.png';
 
     //Post the star rating
     let postRating = (rating) =>{
