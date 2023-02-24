@@ -9,7 +9,7 @@ import {  Button, StyleSheet, Text,} from 'react-native';
 export default function App() {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = '9c024169de071d4fbd135671bf5d05cf';    
-  const [guessSessionId,setGuessSessionId] = useState('')
+  const [guessSessionId,setGuessSessionId] = useState('');
   
   useEffect(() => {
       axios.get(`${API_URL}/authentication/guest_session/new?api_key=${API_KEY}`)
